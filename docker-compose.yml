@@ -1,0 +1,60 @@
+networks:
+  captain:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - captain
+    volumes:
+      - ./mongo-temp/:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  server:
+    build: "./server"
+    container_name: server
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      MODE: DEV
+      MONGO_URI: mongodb://root:password@mongodb:27017/captian?authSource=admin
+      JWT_SECRET: jWt_SeCrEt
+    networks:
+      - captain
+    volumes:
+      - ./server:/app
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ["CMD", "curl", "-I", "http://localhost:8000/health"] 
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+volumes:
+  mongo-data:
+    driver: local
