@@ -32,7 +32,7 @@ mkdir mongo-temp
 ```
 
 ```
-docker compose up -d && cd app && npm i && npm run dev
+docker compose up -d
 ```
 
 Step 3. Start the Application
