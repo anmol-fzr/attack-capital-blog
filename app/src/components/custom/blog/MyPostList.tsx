@@ -13,11 +13,11 @@ export async function MyPostList() {
   const blogs = await getBlogPost();
   return (
     <>
-      {blogs.map(({ _id, title, content, createdAt }) => (
+      {blogs.map(({ _id, title, desc, createdAt }) => (
         <BlogCard
           slug={_id}
           title={title}
-          desc={content}
+          desc={desc}
           postedAt={createdAt}
           key={_id}
         />

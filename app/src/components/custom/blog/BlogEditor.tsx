@@ -14,14 +14,10 @@ import { RedoToolbar } from "@/components/toolbars/redo";
 import { StrikeThroughToolbar } from "@/components/toolbars/strikethrough";
 import { ToolbarProvider } from "@/components/toolbars/toolbar-provider";
 import { UndoToolbar } from "@/components/toolbars/undo";
-import {
-  Editor,
-  EditorContent,
-  type Extension,
-  useEditor,
-} from "@tiptap/react";
+import { Editor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useRef } from "react";
+import Placeholder from "@tiptap/extension-placeholder";
+import Document from "@tiptap/extension-document";
 
 export const extensions = [
   StarterKit.configure({
@@ -51,11 +47,17 @@ export const extensions = [
       },
     },
     heading: {
-      levels: [1, 2, 3, 4],
+      levels: [1, 2, 3, 4, 5, 6],
       HTMLAttributes: {
         class: "tiptap-heading",
       },
     },
+  }),
+  Placeholder.configure({
+    placeholder: "Post Content ...",
+  }),
+  Document.extend({
+    content: "heading block*",
   }),
 ] as const;
 

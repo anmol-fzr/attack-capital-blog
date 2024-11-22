@@ -1,3 +1,4 @@
+import { GoBack } from "@/components";
 import * as API from "@/services";
 
 async function getData(postId: string) {
@@ -10,21 +11,25 @@ export default async function PostPage(props) {
   const post = await getData(postId);
 
   return (
-    <div className="theme-max-width p-4 space-y-12">
-      <h1
-        style={{
-          viewTransitionName: `post_image_${postId}`,
-        }}
-      >
-        {post.title}
-      </h1>
-      <div className="prose">
-        <p
+    <div>
+      <GoBack href="/" />
+      <div className="theme-max-width p-4 space-y-16">
+        <h1
           style={{
-            viewTransitionName: `post_content_${postId}`,
+            viewTransitionName: `post_image_${postId}`,
           }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+          className="text-center"
+        >
+          {post.title}
+        </h1>
+        <div className="prose">
+          <p
+            style={{
+              viewTransitionName: `post_content_${postId}`,
+            }}
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        </div>
       </div>
     </div>
   );

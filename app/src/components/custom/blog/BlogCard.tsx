@@ -22,7 +22,7 @@ export function BlogCard({ slug, title, desc, postedAt }: BlogCardProps) {
           <MoveUpRight />
         </Button>
         <div className="flex-1 w-full pb-6">
-          <Link href={`/post/${slug}`} className="space-y-2" prefetch={false}>
+          <Link href={`/post/${slug}`} className="space-y-2" prefetch>
             <div className="space-y-2">
               <h3
                 style={{
@@ -47,8 +47,7 @@ export function BlogCard({ slug, title, desc, postedAt }: BlogCardProps) {
               }}
               className="line-clamp-3"
             >
-              {" "}
-              {desc}{" "}
+              {desc} ...
             </p>
           </Link>
         </div>

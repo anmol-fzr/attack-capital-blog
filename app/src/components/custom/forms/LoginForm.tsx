@@ -27,6 +27,7 @@ export function LoginForm() {
     onSuccess(res) {
       const { token, email, userId } = res.data;
       updateCreds({ token, email, isLogin: true });
+      localStorage.setItem("token", token);
       toast.success(res.message, { id });
       router.push("/dashboard");
     },

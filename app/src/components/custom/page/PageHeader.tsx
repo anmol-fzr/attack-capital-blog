@@ -8,7 +8,7 @@ type PageHeaderProps = {
 
 export function PageHeader({ title, desc, className }: PageHeaderProps) {
   return (
-    <div className={cn("space-y-0.5", className)}>
+    <div className={cn("space-y-0.5 mb-4", className)}>
       <h2 className="animate-in slide-in-from-top text-3xl font-bold tracking-tight">
         {title}
       </h2>

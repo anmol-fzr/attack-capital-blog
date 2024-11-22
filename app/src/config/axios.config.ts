@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "@/store";
 
-const baseURL = "http://localhost:8000";
+const baseURL = "http://192.168.29.57:8000";
 
 const validateStatus = (status: number) => {
   if (status === 401) {
@@ -17,7 +17,6 @@ const axiosInst = axios.create({
 });
 
 axiosInst.interceptors.request.use((config) => {
-  //const token = useAuthStore.getState().creds.token;
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMGM2OWU1NmUzYTNkMmIxNDg3ZTMiLCJlbWFpbCI6ImFpbnNhMjI3OUBnbWFpbC5jb20iLCJpYXQiOjE3MzIxMTk3NDB9.gElRdZzKa-dXq8pdhzzt1Yo9LZO79ha-WYs_VLlQtz8";
   if (token) {
@@ -28,7 +27,10 @@ axiosInst.interceptors.request.use((config) => {
 
 axiosInst.interceptors.response.use(
   (config) => config.data,
-  (errResp) => Promise.reject(errResp.response.data),
+  (errResp) => {
+    console.log(errResp);
+    Promise.reject(errResp.response.data);
+  },
 );
 
 const logout = () => {

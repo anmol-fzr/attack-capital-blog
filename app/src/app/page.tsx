@@ -16,7 +16,7 @@ export default async function Home() {
         desc="Explore articles that inform, inspire, and ignite curiosity, curated just for you."
       />
       <div className="flex gap-6 mt-4">
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full max-w-screen-2xl mx-auto">
           {blogs.map(({ _id, title, desc, createdAt }) => (
             <BlogCard
               slug={_id}
