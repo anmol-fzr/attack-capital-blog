@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useAuthStore } from "@/store";
 
-const baseURL = "http://localhost:8000";
+const baseURL = "http://192.168.29.57:8000";
+//const baseURL = "http://localhost:8000";
+//const baseURL = "http://0.0.0.0:8000";
 
 const validateStatus = (status: number) => {
   if (status === 401) {
@@ -14,12 +16,14 @@ const axiosInst = axios.create({
   baseURL,
   timeout: 50_000,
   validateStatus,
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 axiosInst.interceptors.response.use(
   (config) => config.data,
   (errResp) => {
-    console.log(errResp);
     Promise.reject(errResp?.response?.data);
   },
 );

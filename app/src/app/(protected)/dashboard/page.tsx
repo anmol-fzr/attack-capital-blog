@@ -1,4 +1,5 @@
 import { LoadingPostList, MyPostList, Link, PageHeader } from "@/components";
+import { Plus } from "lucide-react";
 import { Suspense } from "react";
 
 export default function Page() {
@@ -7,6 +8,7 @@ export default function Page() {
       <div className="flex items-start justify-between">
         <PageHeader title="My Blogs" desc="See all your published posts here" />
         <Link href="/new" variant="default">
+          <Plus />
           Add New Post
         </Link>
       </div>
