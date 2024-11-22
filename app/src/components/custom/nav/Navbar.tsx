@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import { Button, Link } from "@/components";
-import { useAuthStore } from "@/store";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { logout } from "@/config";
+import { useIsLogin } from "@/hooks";
 
 const links = [
   {
@@ -19,7 +19,7 @@ const links = [
 
 export function Navbar() {
   const currPath = usePathname();
-  const isLogin = useAuthStore((state) => state.creds.isLogin);
+  const isLogin = useIsLogin();
 
   return (
     <nav className="p-4 px-4 border-b flex items-center justify-between sticky top-0 backdrop-blur !z-[5]">

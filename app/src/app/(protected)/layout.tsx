@@ -1,15 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store";
 import { ReactNode, useEffect } from "react";
 import { Navbar } from "@/components";
+import { useIsLogin } from "@/hooks";
 
 interface ProtectedLayoutProps {
   children: ReactNode;
 }
 
 export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
-  const isLogin = useAuthStore((state) => state.creds.isLogin);
+  const isLogin = useIsLogin();
   const router = useRouter();
 
   useEffect(() => {

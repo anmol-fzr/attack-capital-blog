@@ -1,7 +1,5 @@
-import { createPostSchema } from "@/schema";
-import { z } from "zod";
-
-type IReqCreatePost = z.infer<typeof createPostSchema> & {
+type IReqCreatePost = {
+  title: string;
   content: string;
   desc: string;
 };

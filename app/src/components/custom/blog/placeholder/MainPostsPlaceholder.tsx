@@ -1,10 +1,10 @@
 "use client";
 
 import { Link } from "@/components";
-import { useAuthStore } from "@/store";
+import { useIsLogin } from "@/hooks";
 
 export function MainPostsPlaceholder() {
-  const isLogin = useAuthStore((state) => state.creds.isLogin);
+  const isLogin = useIsLogin();
   return (
     <div className="m-auto">
       <div className="flex-1 dead-center">

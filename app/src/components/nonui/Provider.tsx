@@ -1,7 +1,6 @@
 "use client";
 import { ReactNode, useLayoutEffect } from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ThemeProvider } from "@/components";
 import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "@/components";
 import { TooltipProvider } from "@/components";
@@ -26,10 +25,8 @@ export function Provider({ children }: ProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ViewTransitions>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Toaster />
-          <TooltipProvider>{children}</TooltipProvider>
-        </ThemeProvider>
+        <Toaster />
+        <TooltipProvider>{children}</TooltipProvider>
       </ViewTransitions>
     </QueryClientProvider>
   );
