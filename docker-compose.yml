@@ -3,19 +3,19 @@ networks:
     driver: bridge
 
 services:
-  app:
-    build: "./app/"
-    container_name: app
-    ports:
-      - "3000:3000"
-    environment: 
-      SERVER_URL: http://localhost:8000
-    networks:
-      - captain
-    volumes:
-      - ./app/:/app
-    depends_on:
-      - server
+  # app:
+  #   build: "./app/"
+  #   container_name: app
+  #   ports:
+  #     - "3000:3000"
+  #   environment: 
+  #     SERVER_URL: http://localhost:8000
+  #   networks:
+  #     - captain
+  #   volumes:
+  #     - ./app/:/app
+  #   depends_on:
+  #     - server
 
   mongodb:
     image: mongo
