@@ -2,12 +2,8 @@ import cors from "cors";
 import express, { type Express } from "express";
 import helmet from "helmet";
 import { startup } from "@/helper";
-import { createPost, getAllPosts, getMyPosts } from "./controller";
 import { envs } from "./utils";
-import { authRouter } from "@/router";
-import { validate } from "./middleware";
-import { newPostSchema } from "./schema";
-import { authenticate } from "./middleware/authenticate.middleware";
+import { authRouter, postRouter } from "@/router";
 
 startup();
 
@@ -23,12 +19,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/auth", authRouter);
-
-app.get("/posts", getAllPosts);
-
-app.use(authenticate);
-app.get("/posts/me", getMyPosts);
-app.post("/post", validate(newPostSchema), createPost);
+app.use("/posts", postRouter);
 
 const { PORT } = envs;
 

@@ -5,7 +5,8 @@ import { Router } from "express";
 
 const authRouter = Router();
 
-authRouter.post("/login", validate(loginSchema), loginHndlr);
-authRouter.post("/signup", validate(signUpSchema), signupHndlr);
+authRouter
+  .post("/login", validate(loginSchema), loginHndlr)
+  .post("/signup", validate(signUpSchema), signupHndlr);
 
 export { authRouter };
