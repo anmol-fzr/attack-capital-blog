@@ -9,4 +9,5 @@ COPY . .
 RUN apt-get -y update
 RUN apt-get -y install curl
 
-CMD ["npm", "run", "dev"]
+RUN npm run build
+CMD ["npm", "run", "start"]
