@@ -12,7 +12,7 @@ const POST = {
       params: { _id: postId },
     }),
   CREATE: (payload: IReqCreatePost) =>
-    axiosInst.post<IResCreatePost, IResCreatePost>("/post", payload),
+    axiosInst.post<IResCreatePost, IResCreatePost>("/posts", payload),
 };
 
 export { POST };
