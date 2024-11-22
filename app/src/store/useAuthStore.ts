@@ -5,7 +5,8 @@ import { IAuthStore } from "./types";
 const creds = {
   isLogin: false,
   token: null,
-  email: "",
+  email: null,
+  userId: null,
 } as const;
 
 const useAuthStore = create<IAuthStore>()(

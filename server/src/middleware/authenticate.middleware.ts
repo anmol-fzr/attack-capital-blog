@@ -19,13 +19,19 @@ const authenticate = async (
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.sendStatus(401);
+    return res.status(401).json({
+      data: null,
+      message: "Authentication credentials are required.",
+    });
   }
 
   const token = authHeader.split(" ")[1];
 
   if (!token) {
-    return res.status(401).send("Authentication credentials are required.");
+    return res.status(401).json({
+      data: null,
+      message: "Authentication credentials are required.",
+    });
   }
 
   jwt.verify(

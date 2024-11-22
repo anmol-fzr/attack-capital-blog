@@ -74,10 +74,21 @@
   h1 {
     @apply text-3xl font-extrabold tracking-tight lg:text-4xl;
   }
+  h2 {
+    @apply text-2xl font-semibold tracking-tight lg:text-3xl;
+  }
 }
 
 .max-w-theme {
   @apply max-w-screen-2xl mx-auto w-full overflow-hidden;
+}
+
+.min-h-page {
+  @apply min-h-[calc(100vh_-_170px)];
+}
+
+.dead-center {
+  @apply flex items-center justify-center;
 }
 
 /*Tiptap*/
@@ -86,45 +97,23 @@
   outline: none !important;
 }
 
-h1.tiptap-heading {
-  @apply mb-6 mt-8 text-4xl font-bold;
+.tiptap {
+  ol,
+  ul {
+    padding: 0.25rem 1rem;
+  }
+  blockquote {
+    border-left: 3px solid gray;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  :is(p.is-empty, h1.is-empty)::before {
+    @apply pointer-events-none float-left h-0 text-muted-foreground;
+    content: attr(data-placeholder);
+  }
 }
 
-h2.tiptap-heading {
-  @apply mb-4 mt-6 text-3xl font-bold;
-}
-
-h3.tiptap-heading {
-  @apply mb-3 mt-4 text-xl font-bold;
-}
-
-h1.tiptap-heading:first-child,
-h2.tiptap-heading:first-child,
-h3.tiptap-heading:first-child {
-  margin-top: 0;
-}
-
-h1.tiptap-heading + h2.tiptap-heading,
-h1.tiptap-heading + h3.tiptap-heading,
-h2.tiptap-heading + h1.tiptap-heading,
-h2.tiptap-heading + h3.tiptap-heading,
-h3.tiptap-heading + h1.tiptap-heading,
-h3.tiptap-heading + h2.tiptap-heading {
-  margin-top: 0;
-}
-
-.tiptap p.is-editor-empty:first-child::before {
-  @apply pointer-events-none float-left h-0 text-muted-foreground;
-  content: attr(data-placeholder);
-}
-
-.tiptap ul,
-.tiptap ol {
-  padding: 0 1rem;
-}
-
-.tiptap blockquote {
-  border-left: 3px solid gray;
-  margin: 1.5rem 0;
-  padding-left: 1rem;
+.prose > h1 {
+  @apply text-center;
 }

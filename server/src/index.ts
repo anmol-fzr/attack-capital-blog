@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { type Express } from "express";
 import helmet from "helmet";
 import { startup } from "@/helper";
-import { createPost, getAllPosts } from "./controller";
+import { createPost, getAllPosts, getMyPosts } from "./controller";
 import { envs } from "./utils";
 import { authRouter } from "@/router";
 import { validate } from "./middleware";
@@ -27,7 +27,7 @@ app.use("/auth", authRouter);
 app.get("/posts", getAllPosts);
 
 app.use(authenticate);
-
+app.get("/posts/me", getMyPosts);
 app.post("/post", validate(newPostSchema), createPost);
 
 const { PORT } = envs;

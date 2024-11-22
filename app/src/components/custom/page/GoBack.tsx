@@ -1,4 +1,4 @@
-import { Link, type LinkProps } from "../Link";
+import { Link, type LinkProps } from "@/components";
 import { ChevronLeft } from "lucide-react";
 
 type GoBackProps = Omit<LinkProps, "children">;

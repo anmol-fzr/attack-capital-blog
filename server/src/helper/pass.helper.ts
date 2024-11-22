@@ -1,15 +1,13 @@
 import bcryptjs from "bcryptjs";
 
-const numSaltRounds = 8;
-
 async function hash(rawPass: string) {
-  const hashedPass = await bcryptjs.hash(rawPass, numSaltRounds);
+  const salt = await bcryptjs.genSalt(8);
+  const hashedPass = await bcryptjs.hash(rawPass, salt);
   return hashedPass;
 }
 
 async function compare(rawPass: string, hashedPass: string) {
-  const password = await hash(rawPass);
-  const isPassMatch = await bcryptjs.compare(password, hashedPass);
+  const isPassMatch = await bcryptjs.compare(rawPass, hashedPass);
   return isPassMatch;
 }
 

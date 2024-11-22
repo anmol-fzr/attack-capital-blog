@@ -8,8 +8,10 @@ interface FormHeaderProps {
 export function FormHeader({ title, desc }: FormHeaderProps) {
   return (
     <CardHeader>
-      <CardTitle className="text-2xl">{title}</CardTitle>
-      <CardDescription>{desc}</CardDescription>
+      <CardTitle className="text-2xl animate-in slide-in-from-top">
+        {title}
+      </CardTitle>
+      <CardDescription className="animate-in">{desc}</CardDescription>
     </CardHeader>
   );
 }

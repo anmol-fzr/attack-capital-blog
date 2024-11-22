@@ -54,7 +54,7 @@ services:
     networks:
       - captain
     volumes:
-      - ./server:/app
+      - ./server/:/app
     depends_on:
       - mongodb
     healthcheck:

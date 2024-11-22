@@ -5,8 +5,8 @@ type IReqCreatePost = z.infer<typeof createPostSchema> & {
   content: string;
   desc: string;
 };
+
 type IReqGetPosts = {
-  authorId?: string;
   _id?: string;
 };
 

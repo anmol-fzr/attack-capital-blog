@@ -6,7 +6,13 @@ async function getData(postId: string) {
   return data.data;
 }
 
-export default async function PostPage(props) {
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function PostPage(props: PostPageProps) {
   const postId = props.params.slug;
   const post = await getData(postId);
 
@@ -22,7 +28,7 @@ export default async function PostPage(props) {
         >
           {post.title}
         </h1>
-        <div className="prose">
+        <div className="prose dark:prose-invert">
           <p
             style={{
               viewTransitionName: `post_content_${postId}`,

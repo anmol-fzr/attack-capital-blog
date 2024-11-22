@@ -1,10 +1,14 @@
 import { Model, model, ObjectId, Schema } from "mongoose";
+import { User } from "./user.model";
 
 type IPost = {
   title: string;
   desc: string;
   content: string;
-  authorId: ObjectId;
+  author: {
+    _id: string;
+    email: string;
+  };
 };
 
 const postSchema = new Schema<IPost, Model<IPost>>(
@@ -22,7 +26,7 @@ const postSchema = new Schema<IPost, Model<IPost>>(
       required: true,
     },
     authorId: {
-      type: Schema.Types.String,
+      type: Schema.Types.ObjectId,
       required: true,
       index: true,
     },

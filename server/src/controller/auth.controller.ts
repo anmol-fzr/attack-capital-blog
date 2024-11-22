@@ -18,7 +18,8 @@ const loginHndlr = async (req: Request, res: Response) => {
     });
   }
 
-  const isPassMatch = passHelper.compare(rawPass, foundUser.passwordHash);
+  const isPassMatch = await passHelper.compare(rawPass, foundUser.passwordHash);
+  console.log({ isPassMatch });
 
   if (!isPassMatch) {
     return res.status(400).json({
@@ -26,12 +27,14 @@ const loginHndlr = async (req: Request, res: Response) => {
     });
   }
 
-  const userId = foundUser._id.toString()
+  const userId = foundUser._id.toString();
 
   const token = jwtHelper.getToken({
     userId,
     email,
   });
+
+  res.cookie("access_token", token);
 
   return res.json({
     data: {

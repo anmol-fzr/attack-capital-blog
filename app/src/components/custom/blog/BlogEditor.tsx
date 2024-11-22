@@ -46,20 +46,20 @@ export const extensions = [
         class: "bg-primary text-primary-foreground p-2 text-sm rounded-md p-1",
       },
     },
-    heading: {
-      levels: [1, 2, 3, 4, 5, 6],
-      HTMLAttributes: {
-        class: "tiptap-heading",
-      },
-    },
   }),
   Placeholder.configure({
-    placeholder: "Post Content ...",
+    placeholder: ({ node }) => {
+      if (node.type.name === "heading") {
+        return "Post's Title goes here";
+      }
+
+      return "Can you add some further context?";
+    },
   }),
   Document.extend({
     content: "heading block*",
   }),
-] as const;
+];
 
 type BlogEditorProps = {
   editor: Editor | null;
@@ -95,7 +95,7 @@ export function BlogEditor({ editor }: BlogEditorProps) {
         onClick={() => {
           editor?.chain().focus().run();
         }}
-        className="cursor-text min-h-[18rem] bg-background"
+        className="cursor-text min-h-[24rem] bg-background"
       >
         <EditorContent className="outline-none" editor={editor} />
       </div>

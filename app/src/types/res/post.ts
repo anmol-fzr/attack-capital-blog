@@ -5,9 +5,10 @@ type Post = {
   title: string;
   content: string;
   desc: string;
-  authorId: string;
+  author: {
+    email: string;
+  };
   createdAt: string;
-  updatedAt: string;
 };
 
 type IResGetPosts = IRes<Post[]>;

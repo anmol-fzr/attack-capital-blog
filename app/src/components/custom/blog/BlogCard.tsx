@@ -1,4 +1,4 @@
-import { Button, CardContent, Separator } from "@/components";
+import { Button, Separator } from "@/components";
 import { Link } from "next-view-transitions";
 import { MoveUpRight } from "lucide-react";
 
@@ -6,6 +6,7 @@ interface BlogCardProps {
   slug: string;
   title: string;
   desc: string;
+  author: string;
   postedAt: string;
 }
 
@@ -13,7 +14,13 @@ const fmt = new Intl.DateTimeFormat("en-US", {
   dateStyle: "long",
 });
 
-export function BlogCard({ slug, title, desc, postedAt }: BlogCardProps) {
+export function BlogCard({
+  slug,
+  title,
+  desc,
+  author,
+  postedAt,
+}: BlogCardProps) {
   return (
     <>
       <div className="transition-all pt-6 duration-500 relative group">
@@ -34,20 +41,23 @@ export function BlogCard({ slug, title, desc, postedAt }: BlogCardProps) {
               </h3>
               <p
                 style={{
-                  viewTransitionName: `post_date_${slug}`,
+                  viewTransitionName: `post_content_${slug}`,
                 }}
-                className="text-gray-500 dark:text-gray-400"
+                className="line-clamp-3"
               >
-                Posted on {fmt.format(new Date(postedAt))}
+                {desc} ...
               </p>
             </div>
             <p
               style={{
-                viewTransitionName: `post_content_${slug}`,
+                viewTransitionName: `post_date_${slug}`,
               }}
-              className="line-clamp-3"
+              className="text-gray-500 dark:text-gray-400"
             >
-              {desc} ...
+              Posted on {fmt.format(new Date(postedAt))}
+            </p>
+            <p className="text-gray-400 dark:text-gray-300 text-xs">
+              by {author}
             </p>
           </Link>
         </div>
