@@ -1,14 +1,10 @@
 import { Model, model, ObjectId, Schema } from "mongoose";
-import { User } from "./user.model";
 
 type IPost = {
   title: string;
   desc: string;
   content: string;
-  author: {
-    _id: string;
-    email: string;
-  };
+  authorId: ObjectId;
 };
 
 const postSchema = new Schema<IPost, Model<IPost>>(
