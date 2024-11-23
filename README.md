@@ -17,7 +17,9 @@ To run the setup commands and use this project effectively, you'll need the foll
 > use a POSIX-compliant shell environment.
 
 
+```
 curl https://raw.githubusercontent.com/anmol-fzr/attack-capital-blog/refs/heads/main/setup.sh | sh
+```
 
 OR 
 
