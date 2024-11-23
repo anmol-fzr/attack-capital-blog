@@ -22,6 +22,15 @@ fi
 
 cd attack-capital-blog || { log "Error: Failed to change directory to attack-capital-blog."; exit 1; }
 
+log "Creating Directory for MongoDB ..."
+if mkdir mongo-temp; then
+    log "Directory for MongoDB Volume Created Successfully"
+else
+    onerr 2
+    log "Error: Failed to Create a Directory for MongoDB Volume"
+    exit 1
+fi
+
 log "Starting Docker Compose..."
 if docker compose up -d; then
     log "Docker Compose started successfully."
